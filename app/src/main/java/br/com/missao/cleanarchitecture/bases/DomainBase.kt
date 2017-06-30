@@ -24,7 +24,7 @@ open class DomainBase<T> {
     /**
      * Removes presenter reference
      */
-    fun clear() {
+    open fun clear() {
         _presenter = null
     }
 
