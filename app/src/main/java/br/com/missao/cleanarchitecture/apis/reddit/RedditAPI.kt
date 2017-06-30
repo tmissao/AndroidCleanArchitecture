@@ -13,8 +13,10 @@ interface RedditAPI {
     /**
      * Gets the most relevant news from Reddit
      * @param limit Quantity of news desired
+     * @param after Quantity of firsts news to be ignored
      */
     @GET("top.json")
-    fun getTopNews(@Query("limit") limit: String): Observable<RedditNewsResponse>
+    fun getTopNews(@Query("after") after: String,
+            @Query("limit") limit: String): Observable<RedditNewsResponse>
 
 }

@@ -30,15 +30,17 @@ class RedditRestTest {
     }
 
     @After
-    fun tearDown() {}
+    fun tearDown() {
+    }
 
     @Test
     fun getTopNews() {
         val limit = "10"
+        val after = "5"
         val response: RedditNewsResponse = mock()
-        whenever(api.getTopNews(limit)).doReturn(Observable.just(response))
+        whenever(api.getTopNews(after, limit)).doReturn(Observable.just(response))
 
-        val result = rest.getTopNews(limit).blockingFirst()
+        val result = rest.getTopNews(after, limit).blockingFirst()
         Assertions.assertThat(result).isEqualTo(response)
     }
 
