@@ -1,7 +1,8 @@
-package br.com.missao.cleanarchitecture
+package br.com.missao.cleanarchitecture.activities
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import br.com.missao.cleanarchitecture.R
 
 class MainActivity : AppCompatActivity() {
 

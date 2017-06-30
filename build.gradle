@@ -1,7 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.kotlin_version = '1.1.2-4'
+    ext.kotlin_version = '1.0.7'
     ext.dagger_version = '2.10'
     ext.retrofit_version = '2.3.0'
     ext.gson_version = '2.0.2'
@@ -11,11 +11,15 @@ buildscript {
     ext.mockito_version = '2.8.47'
     ext.roboletric_version = '3.3.2'
     ext.mockito_kotlin_version = '1.5.0'
+    ext.rx_java_version = '2.1.0'
+    ext.rx_android_version = '2.0.1'
+    ext.okhttp_version = '3.8.0'
     repositories {
         jcenter()
+        maven { url "https://maven.google.com" }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.2'
+        classpath 'com.android.tools.build:gradle:2.3.3'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         // NOTE: Do not place your application dependencies here; they belong

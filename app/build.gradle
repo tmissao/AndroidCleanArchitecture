@@ -1,6 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
 
 android {
     compileSdkVersion 25
@@ -21,6 +23,10 @@ android {
     }
 }
 
+kapt {
+    generateStubs = true
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -28,25 +34,31 @@ dependencies {
     })
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compile "com.android.support:design:$support_library_version"
     compile "com.android.support:appcompat-v7:$support_library_version"
     compile "com.android.support:support-v4:$support_library_version"
     compile "com.android.support:recyclerview-v7:$support_library_version"
     compile "com.squareup.retrofit2:retrofit:$retrofit_version"
+    compile "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
     compile "com.squareup.retrofit2:converter-gson:$gson_version"
     compile "com.google.dagger:dagger:$dagger_version"
+    compile "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
     compile "com.github.bumptech.glide:glide:$glide_version"
+    compile "io.reactivex.rxjava2:rxandroid:$rx_android_version"
+    compile "io.reactivex.rxjava2:rxjava:$rx_java_version"
 
     testCompile "org.assertj:assertj-core:$assertj_version"
     testCompile "org.mockito:mockito-core:$mockito_version"
-    testCompile "com.nhaarman:mockito-kotlin-kt1.1:$mockito_kotlin_version"
+    testCompile "com.nhaarman:mockito-kotlin:$mockito_kotlin_version"
     testCompile "org.robolectric:robolectric:$roboletric_version"
 
     annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
-    annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
 
 
 }
 repositories {
     mavenCentral()
+    maven { url "https://maven.google.com" }
 }
