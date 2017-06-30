@@ -5,7 +5,7 @@ import java.lang.ref.WeakReference
 /**
  * Presenter's Application Base
  */
-open class BasePresenter<V, D> {
+open class PresenterBase<V, D> {
 
     /**
      * Backing properties for [V], keeping its weak reference

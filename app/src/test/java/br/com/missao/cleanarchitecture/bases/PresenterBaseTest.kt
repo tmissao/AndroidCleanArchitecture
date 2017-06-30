@@ -6,15 +6,15 @@ import org.junit.Before
 import org.junit.Test
 
 /**
- * Tests for class [BasePresenter]
+ * Tests for class [PresenterBase]
  */
-class BasePresenterTest {
+class PresenterBaseTest {
 
-    lateinit var presenter: BasePresenter<Int, String>
+    lateinit var presenterBase: PresenterBase<Int, String>
 
     @Before
     fun setUp() {
-        presenter = BasePresenter()
+        presenterBase = PresenterBase()
     }
 
     @After
@@ -27,11 +27,11 @@ class BasePresenterTest {
         val expected = 10
         var result: Int? = null
 
-        result = presenter.view
+        result = presenterBase.view
         Assertions.assertThat(result).isNull()
 
-        presenter.view = expected
-        result = presenter.view
+        presenterBase.view = expected
+        result = presenterBase.view
         Assertions.assertThat(result).isEqualTo(expected)
     }
 
@@ -40,8 +40,8 @@ class BasePresenterTest {
         val expected = 10
         var result: Int? = null
 
-        presenter.view = expected
-        result = presenter.view
+        presenterBase.view = expected
+        result = presenterBase.view
         Assertions.assertThat(result).isEqualTo(expected)
     }
 
@@ -50,11 +50,11 @@ class BasePresenterTest {
         val expected = "Hello"
         var result: String? = null
 
-        result = presenter.domain
+        result = presenterBase.domain
         Assertions.assertThat(result).isNull()
 
-        presenter.domain = expected
-        result = presenter.domain
+        presenterBase.domain = expected
+        result = presenterBase.domain
         Assertions.assertThat(result).isEqualTo(expected)
     }
 
@@ -63,8 +63,8 @@ class BasePresenterTest {
         val expected = "Hello"
         var result: String? = null
 
-        presenter.domain = expected
-        result = presenter.domain
+        presenterBase.domain = expected
+        result = presenterBase.domain
         Assertions.assertThat(result).isEqualTo(expected)
     }
 
@@ -72,12 +72,12 @@ class BasePresenterTest {
     fun clear() {
         var resultView: Int? = null
         var resultDomain: String? = null
-        presenter.domain = "hello"
-        presenter.view = 1
-        presenter.clear()
+        presenterBase.domain = "hello"
+        presenterBase.view = 1
+        presenterBase.clear()
 
-        resultView = presenter.view
-        resultDomain = presenter.domain
+        resultView = presenterBase.view
+        resultDomain = presenterBase.domain
 
         Assertions.assertThat(resultDomain).isNull()
         Assertions.assertThat(resultView).isNull()
