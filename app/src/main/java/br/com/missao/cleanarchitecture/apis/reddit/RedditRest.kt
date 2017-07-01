@@ -14,7 +14,7 @@ class RedditRest(retrofit: Retrofit) : RedditAPI {
      */
     private val api: RedditAPI = retrofit.create(RedditAPI::class.java)
 
-    override fun getTopNews(after: String, limit: String): Observable<RedditNewsResponse> {
+    override fun getTopNews(after: Int, limit: Int): Observable<RedditNewsResponse> {
         return api.getTopNews(after, limit)
     }
 }

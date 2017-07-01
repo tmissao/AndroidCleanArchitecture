@@ -35,8 +35,8 @@ class RedditRestTest {
 
     @Test
     fun getTopNews() {
-        val limit = "10"
-        val after = "5"
+        val limit = 10
+        val after = 5
         val response: RedditNewsResponse = mock()
         whenever(api.getTopNews(after, limit)).doReturn(Observable.just(response))
 

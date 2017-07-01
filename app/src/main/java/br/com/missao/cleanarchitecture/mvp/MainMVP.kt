@@ -1,6 +1,6 @@
 package br.com.missao.cleanarchitecture.mvp
 
-import br.com.missao.cleanarchitecture.pojos.dtos.RedditNewsResponse
+import br.com.missao.cleanarchitecture.pojos.dtos.RedditNewsDataResponse
 
 /**
  * Application's Main MVP
@@ -13,9 +13,9 @@ interface MainMvpRequiredViewOperations {
 
     /**
      * Receives Reddit News
-     * @param news list of [RedditNewsResponse]
+     * @param news list of [RedditNewsDataResponse]
      */
-    fun onGetInitialNews(news: RedditNewsResponse)
+    fun onGetInitialNews(news: List<RedditNewsDataResponse>)
 
     /**
      * Handles Network Error
@@ -42,14 +42,16 @@ interface MainMvpRequiredPresenterOperations {
 
     /**
      * Receives Reddit News
-     * @param news list of [RedditNewsResponse]
+     * @param news list of [RedditNewsDataResponse]
      */
-    fun onGetInitialNews(news: RedditNewsResponse)
+    fun onGetInitialNews(news: List<RedditNewsDataResponse>)
 
     /**
      * Handles Network Error
      */
     fun onNetworkError()
+
+    fun result(result: Int)
 }
 
 /**

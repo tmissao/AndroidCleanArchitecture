@@ -31,11 +31,12 @@ class RetrofitModule {
     }
 
     /**
-     * Provides [Retrofit] rest client
+     * Provides [Retrofit] rest client on the [baseUrl], and uses [client] to log its requests
      */
     @Provides @Singleton fun providesRetrofit(client: OkHttpClient, baseUrl: String): Retrofit {
         return Retrofit.Builder()
                 .baseUrl(baseUrl)
+                .client(client)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()

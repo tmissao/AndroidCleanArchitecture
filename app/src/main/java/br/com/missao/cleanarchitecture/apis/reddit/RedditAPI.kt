@@ -16,7 +16,7 @@ interface RedditAPI {
      * @param after Quantity of firsts news to be ignored
      */
     @GET("top.json")
-    fun getTopNews(@Query("after") after: String,
-            @Query("limit") limit: String): Observable<RedditNewsResponse>
+    fun getTopNews(@Query("after") after: Int,
+            @Query("limit") limit: Int): Observable<RedditNewsResponse>
 
 }
