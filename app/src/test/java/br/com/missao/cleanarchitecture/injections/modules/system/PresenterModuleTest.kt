@@ -1,5 +1,6 @@
 package br.com.missao.cleanarchitecture.injections.modules.system
 
+import br.com.missao.cleanarchitecture.injections.modules.PresenterModule
 import br.com.missao.cleanarchitecture.mvp.MainMvpModelOperations
 import br.com.missao.cleanarchitecture.mvp.MainMvpPresenterOperations
 import com.nhaarman.mockito_kotlin.mock

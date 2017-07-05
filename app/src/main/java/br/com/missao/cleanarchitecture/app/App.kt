@@ -1,9 +1,9 @@
 package br.com.missao.cleanarchitecture.app
 
 import android.app.Application
-import br.com.missao.cleanarchitecture.injections.components.system.AppComponent
-import br.com.missao.cleanarchitecture.injections.components.system.DaggerAppComponent
-import br.com.missao.cleanarchitecture.injections.modules.system.AppModule
+import br.com.missao.cleanarchitecture.injections.components.AppComponent
+import br.com.missao.cleanarchitecture.injections.components.DaggerAppComponent
+import br.com.missao.cleanarchitecture.injections.modules.AppModule
 
 /**
  * Android's application class

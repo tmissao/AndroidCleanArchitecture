@@ -1,6 +1,7 @@
 package br.com.missao.cleanarchitecture.injections.modules.system
 
 import br.com.missao.cleanarchitecture.apis.reddit.RedditAPI
+import br.com.missao.cleanarchitecture.injections.modules.DomainModule
 import br.com.missao.cleanarchitecture.loggers.Logger
 import br.com.missao.cleanarchitecture.mvp.MainMvpModelOperations
 import com.nhaarman.mockito_kotlin.mock

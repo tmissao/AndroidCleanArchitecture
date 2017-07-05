@@ -3,7 +3,7 @@ package br.com.missao.cleanarchitecture.activities
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import br.com.missao.cleanarchitecture.R
-import br.com.missao.cleanarchitecture.injections.components.system.DaggerViewComponent
+import br.com.missao.cleanarchitecture.injections.components.DaggerViewComponent
 import br.com.missao.cleanarchitecture.loggers.Logger
 import br.com.missao.cleanarchitecture.mvp.MainMvpPresenterOperations
 import br.com.missao.cleanarchitecture.mvp.MainMvpRequiredViewOperations

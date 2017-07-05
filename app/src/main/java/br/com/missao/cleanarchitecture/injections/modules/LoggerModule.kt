@@ -1,4 +1,4 @@
-package br.com.missao.cleanarchitecture.injections.modules.system
+package br.com.missao.cleanarchitecture.injections.modules
 
 import br.com.missao.cleanarchitecture.loggers.Logger
 import br.com.missao.cleanarchitecture.loggers.ProductionLogger

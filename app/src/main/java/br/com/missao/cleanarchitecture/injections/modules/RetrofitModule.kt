@@ -1,4 +1,4 @@
-package br.com.missao.cleanarchitecture.injections.modules.system
+package br.com.missao.cleanarchitecture.injections.modules
 
 import dagger.Module
 import dagger.Provides
