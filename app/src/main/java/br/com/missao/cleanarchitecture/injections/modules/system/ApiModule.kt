@@ -1,4 +1,4 @@
-package br.com.missao.cleanarchitecture.injections.modules
+package br.com.missao.cleanarchitecture.injections.modules.system
 
 import br.com.missao.cleanarchitecture.apis.reddit.RedditAPI
 import br.com.missao.cleanarchitecture.apis.reddit.RedditRest

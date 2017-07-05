@@ -1,4 +1,4 @@
-package br.com.missao.cleanarchitecture.injections.modules
+package br.com.missao.cleanarchitecture.injections.modules.system
 
 import br.com.missao.cleanarchitecture.loggers.Logger
 import br.com.missao.cleanarchitecture.loggers.ProductionLogger
@@ -15,6 +15,6 @@ class LoggerModule {
     /**
      * Provides [Logger]
      */
-    @Provides @Singleton internal fun providesLogger(): Logger
+    @Provides @Singleton fun providesLogger(): Logger
             = ProductionLogger()
 }

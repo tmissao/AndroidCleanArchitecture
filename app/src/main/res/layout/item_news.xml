@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:padding="@dimen/space_small_views"
+  android:orientation="horizontal">
+
+  <ImageView
+    android:id="@+id/imgThumbnail"
+    android:layout_width="@dimen/item_news_image_size"
+    android:layout_height="@dimen/item_news_image_size"
+    android:layout_marginTop="@dimen/space_medium_views"
+    android:layout_marginBottom="@dimen/space_small_views"
+    android:layout_marginLeft="@dimen/space_small_views"
+    android:layout_marginRight="@dimen/space_small_views"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true"/>
+
+  <TextView
+    android:id="@+id/textDescription"
+    android:textStyle="bold"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignTop="@+id/imgThumbnail"
+    android:layout_toEndOf="@+id/imgThumbnail"
+    android:layout_toRightOf="@+id/imgThumbnail"
+    android:textColor="@color/primaryTextColor"
+    android:textSize="@dimen/fontsize_body"
+    tools:text="This should be a long description like this example that I'm showing."/>
+
+  <TextView
+    android:id="@+id/textComments"
+    android:textStyle="bold"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentEnd="true"
+    android:layout_alignParentRight="true"
+    android:layout_below="@+id/textDescription"
+    android:textColor="@color/colorPrimary"
+    android:textSize="@dimen/fontsize_caption"
+    tools:text="30012 comments"/>
+
+  <TextView
+    android:id="@+id/textAuthor"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/textDescription"
+    android:layout_toEndOf="@+id/imgThumbnail"
+    android:layout_toLeftOf="@id/textComments"
+    android:layout_toRightOf="@id/imgThumbnail"
+    android:layout_toStartOf="@+id/textComments"
+    android:ellipsize="end"
+    android:textColor="@color/secondaryTextColor"
+    android:textSize="@dimen/fontsize_caption"
+    tools:text="Author 123"/>
+
+</RelativeLayout>

@@ -1,7 +1,7 @@
-package br.com.missao.cleanarchitecture.injections.components
+package br.com.missao.cleanarchitecture.injections.components.system
 
 import br.com.missao.cleanarchitecture.app.App
-import br.com.missao.cleanarchitecture.injections.modules.AppModule
+import br.com.missao.cleanarchitecture.injections.modules.system.AppModule
 import dagger.Component
 import javax.inject.Singleton
 

@@ -2,6 +2,7 @@ package br.com.missao.cleanarchitecture.injections.modules
 
 import br.com.missao.cleanarchitecture.BuildConfig
 import br.com.missao.cleanarchitecture.app.App
+import br.com.missao.cleanarchitecture.injections.modules.system.AppModule
 import com.nhaarman.mockito_kotlin.mock
 import org.assertj.core.api.Assertions
 import org.junit.After

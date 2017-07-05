@@ -33,6 +33,12 @@ interface MainMvpPresenterOperations {
      * @param offset Number of first ignored news, the default value is zero
      */
     fun getInitialNews(offset: Int = 0)
+
+    /**
+     * Defines view reference
+     */
+    fun setView(view: MainMvpRequiredViewOperations)
+
 }
 
 /**
@@ -51,7 +57,6 @@ interface MainMvpRequiredPresenterOperations {
      */
     fun onNetworkError()
 
-    fun result(result: Int)
 }
 
 /**
@@ -64,5 +69,10 @@ interface MainMvpModelOperations {
      * @param offset Number of first ignored news
      */
     fun getInitialNews(offset: Int)
+
+    /**
+     * Defines presenter reference
+     */
+    fun setPresenter(presenter: MainMvpRequiredPresenterOperations)
 }
 

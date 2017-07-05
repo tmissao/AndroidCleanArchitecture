@@ -1,6 +1,6 @@
-package br.com.missao.cleanarchitecture.injections.components
+package br.com.missao.cleanarchitecture.injections.components.system
 
-import br.com.missao.cleanarchitecture.injections.modules.RetrofitModule
+import br.com.missao.cleanarchitecture.injections.modules.system.RetrofitModule
 import dagger.Component
 import retrofit2.Retrofit
 import javax.inject.Singleton

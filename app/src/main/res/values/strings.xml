@@ -1,3 +1,8 @@
 <resources>
   <string name="app_name">CleanArchitecture</string>
+
+  <plurals name="comments">
+    <item quantity="one"> %1$d comment </item>
+    <item quantity="other"> %1$d comments </item>
+  </plurals>
 </resources>

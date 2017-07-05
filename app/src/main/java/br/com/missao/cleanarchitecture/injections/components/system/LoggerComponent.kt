@@ -1,6 +1,6 @@
-package br.com.missao.cleanarchitecture.injections.components
+package br.com.missao.cleanarchitecture.injections.components.system
 
-import br.com.missao.cleanarchitecture.injections.modules.LoggerModule
+import br.com.missao.cleanarchitecture.injections.modules.system.LoggerModule
 import br.com.missao.cleanarchitecture.loggers.Logger
 import dagger.Component
 import javax.inject.Singleton

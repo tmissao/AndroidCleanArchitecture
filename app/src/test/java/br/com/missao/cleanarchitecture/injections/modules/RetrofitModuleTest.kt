@@ -1,5 +1,6 @@
 package br.com.missao.cleanarchitecture.injections.modules
 
+import br.com.missao.cleanarchitecture.injections.modules.system.RetrofitModule
 import com.nhaarman.mockito_kotlin.mock
 import okhttp3.OkHttpClient
 import org.assertj.core.api.Assertions

@@ -40,9 +40,13 @@ class RedditDomain(private val api: RedditAPI, private val logger: Logger) :
                         {
                             when (it) {
                                 is ConnectException -> presenter?.onNetworkError()
-                                else                -> logger.e(TAG, it)
+                                else -> logger.e(TAG, it)
                             }
                         }
                 )
+    }
+
+    override fun setPresenter(presenter: MainMvpRequiredPresenterOperations) {
+        super.presenter = presenter
     }
 }
