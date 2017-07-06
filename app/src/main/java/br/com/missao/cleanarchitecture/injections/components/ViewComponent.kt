@@ -9,9 +9,12 @@ import javax.inject.Singleton
  * Application's view component
  */
 @Singleton
-@Component(modules = arrayOf(RetrofitModule::class, ApiModule::class, LoggerModule::class,
-        DomainModule::class, PresenterModule::class))
+@Component(modules = arrayOf(AppModule::class, RetrofitModule::class, ApiModule::class, LoggerModule::class,
+        MapperModule::class, DomainModule::class, PresenterModule::class))
 interface ViewComponent {
 
+    /**
+     * Injects in [MainActivity] its dependencies
+     */
     fun inject(activity: MainActivity)
 }

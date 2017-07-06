@@ -11,7 +11,7 @@ import br.com.missao.cleanarchitecture.interfaces.ViewType
 data class RedditNewsWrapper(
         val author: String,
         val title: String,
-        val num_comments: Int,
+        val numComments: Int,
         val thumbnail: String,
         val url: String
 ) : ViewType, Parcelable {
@@ -36,7 +36,7 @@ data class RedditNewsWrapper(
     override fun writeToParcel(dest: Parcel, flags: Int) {
         dest.writeString(author)
         dest.writeString(title)
-        dest.writeInt(num_comments)
+        dest.writeInt(numComments)
         dest.writeString(thumbnail)
         dest.writeString(url)
     }

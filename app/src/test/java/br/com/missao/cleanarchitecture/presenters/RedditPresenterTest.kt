@@ -2,7 +2,7 @@ package br.com.missao.cleanarchitecture.presenters
 
 import br.com.missao.cleanarchitecture.mvp.MainMvpModelOperations
 import br.com.missao.cleanarchitecture.mvp.MainMvpRequiredViewOperations
-import br.com.missao.cleanarchitecture.pojos.dtos.RedditNewsDataResponse
+import br.com.missao.cleanarchitecture.pojos.wrappers.RedditNewsWrapper
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.verify
 import org.junit.After
@@ -47,7 +47,7 @@ class RedditPresenterTest {
 
     @Test
     fun onGetInitialNews() {
-        val news = listOf<RedditNewsDataResponse>(mock())
+        val news = listOf<RedditNewsWrapper>(mock())
         presenter.onGetInitialNews(news)
 
         verify(view).onGetInitialNews(news)

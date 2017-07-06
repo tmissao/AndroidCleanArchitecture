@@ -2,7 +2,6 @@ package br.com.missao.cleanarchitecture.injections.modules
 
 import br.com.missao.cleanarchitecture.BuildConfig
 import br.com.missao.cleanarchitecture.app.App
-import br.com.missao.cleanarchitecture.injections.modules.AppModule
 import com.nhaarman.mockito_kotlin.mock
 import org.assertj.core.api.Assertions
 import org.junit.After
@@ -35,6 +34,12 @@ class AppModuleTest {
     @Test
     fun getApp() {
         val result = module.providesApp()
+        Assertions.assertThat(result).isEqualTo(RuntimeEnvironment.application)
+    }
+
+    @Test
+    fun getContext() {
+        val result = module.providesContext()
         Assertions.assertThat(result).isEqualTo(RuntimeEnvironment.application)
     }
 

@@ -6,4 +6,6 @@
 
   <color name="primaryTextColor">#DE000000</color>
   <color name="secondaryTextColor">#8A000000</color>
+  <color name="disableTextColor">#61000000</color>
+
 </resources>

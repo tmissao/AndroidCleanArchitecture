@@ -42,7 +42,7 @@ class ProductionLogger : Logger {
     }
 
     override fun e(tag: String, tr: Throwable) {
-        if (debug) Log.e(tag, "", tr)
+        Log.e(tag, "", tr)
     }
 
     override fun e(tag: String, msg: String, tr: Throwable) {

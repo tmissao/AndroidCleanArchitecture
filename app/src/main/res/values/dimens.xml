@@ -19,4 +19,6 @@
   <dimen name="item_news_image_size">50dp</dimen>
   <dimen name="item_loading_size">40dp</dimen>
 
+  <dimen name="image_no_registry_size">150dp</dimen>
+
 </resources>

@@ -3,6 +3,7 @@ package br.com.missao.cleanarchitecture.domains
 import br.com.missao.cleanarchitecture.apis.reddit.RedditAPI
 import br.com.missao.cleanarchitecture.bases.DomainBase
 import br.com.missao.cleanarchitecture.loggers.Logger
+import br.com.missao.cleanarchitecture.mappers.RedditNewsMapper
 import br.com.missao.cleanarchitecture.mvp.MainMvpModelOperations
 import br.com.missao.cleanarchitecture.mvp.MainMvpRequiredPresenterOperations
 import br.com.missao.cleanarchitecture.pojos.dtos.RedditNewsDataResponse
@@ -14,7 +15,8 @@ import java.net.ConnectException
 /**
  * Resolves inquiries relate to Reddit API
  */
-class RedditDomain(private val api: RedditAPI, private val logger: Logger) :
+class RedditDomain(private val api: RedditAPI, private val logger: Logger,
+                   private val mapper: RedditNewsMapper) :
         DomainBase<MainMvpRequiredPresenterOperations>(),
         MainMvpModelOperations {
 
@@ -34,6 +36,9 @@ class RedditDomain(private val api: RedditAPI, private val logger: Logger) :
                 .subscribeOn(Schedulers.io())
                 .map { it.data.children.map { it.data } }
                 .map { it ?: emptyList<RedditNewsDataResponse>() }
+                .concatMapIterable { it -> it }
+                .map { it -> mapper.toWrapper(it) }
+                .toList()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         { presenter?.onGetInitialNews(it) },

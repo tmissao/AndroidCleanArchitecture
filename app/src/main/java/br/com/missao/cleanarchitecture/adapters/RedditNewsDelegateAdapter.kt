@@ -34,7 +34,7 @@ class RedditNewsDelegateAdapter : ViewTypeDelegateAdapter {
             Glide.with(this.context).load(item.thumbnail).into(this.imgThumbnail)
             this.textDescription.text = item.title
             this.textAuthor.text = item.author
-            this.textComments.text = context.resources.getQuantityString(R.plurals.comments, item.num_comments, item.num_comments)
+            this.textComments.text = context.resources.getQuantityString(R.plurals.comments, item.numComments, item.numComments)
             this.setOnClickListener {
                 val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(item.url))
                 this.context.startActivity(browserIntent)

@@ -10,7 +10,7 @@ import br.com.missao.cleanarchitecture.pojos.wrappers.RedditNewsWrapper
 import java.util.*
 
 /**
- * Created by Tiago on 03/07/17.
+ * Recycler View adapter for display RedditNews
  */
 class NewsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -50,6 +50,11 @@ class NewsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         items.removeAt(initPosition)
         items.addAll(news)
         items.add(loadingItem)
-        notifyItemRangeChanged(initPosition, items.size + 1 )
+        notifyItemRangeChanged(initPosition, items.size + 1)
     }
+
+    /**
+     * Obtains number of elements in adapter
+     */
+    fun getItemsSize() = items.size - 1
 }

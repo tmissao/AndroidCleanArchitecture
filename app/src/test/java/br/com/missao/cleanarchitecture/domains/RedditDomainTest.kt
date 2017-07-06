@@ -5,11 +5,13 @@ import br.com.missao.cleanarchitecture.RxTest
 import br.com.missao.cleanarchitecture.apis.reddit.RedditAPI
 import br.com.missao.cleanarchitecture.app.App
 import br.com.missao.cleanarchitecture.loggers.Logger
+import br.com.missao.cleanarchitecture.mappers.RedditNewsMapper
 import br.com.missao.cleanarchitecture.mvp.MainMvpRequiredPresenterOperations
 import br.com.missao.cleanarchitecture.pojos.dtos.RedditChildrenResponse
 import br.com.missao.cleanarchitecture.pojos.dtos.RedditDataResponse
 import br.com.missao.cleanarchitecture.pojos.dtos.RedditNewsDataResponse
 import br.com.missao.cleanarchitecture.pojos.dtos.RedditNewsResponse
+import br.com.missao.cleanarchitecture.pojos.wrappers.RedditNewsWrapper
 import com.nhaarman.mockito_kotlin.argumentCaptor
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.verify
@@ -32,10 +34,11 @@ import java.net.ConnectException
 @Config(constants = BuildConfig::class, application = App::class)
 class RedditDomainTest : RxTest() {
 
-    var api: RedditAPI = mock()
-    var logger: Logger = mock()
-    var presenter: MainMvpRequiredPresenterOperations = mock()
-    var domain: RedditDomain = RedditDomain(api, logger)
+    val api: RedditAPI = mock()
+    val logger: Logger = mock()
+    val presenter: MainMvpRequiredPresenterOperations = mock()
+    val mapper: RedditNewsMapper = mock()
+    var domain: RedditDomain = RedditDomain(api, logger, mapper)
 
     @Before
     fun setUp() {
@@ -59,14 +62,20 @@ class RedditDomainTest : RxTest() {
 
         val response = RedditNewsResponse(rd)
 
+        val w1: RedditNewsWrapper = mock()
+        val w2: RedditNewsWrapper = mock()
+
         whenever(api.getTopNews(offset, domain.limit))
                 .thenReturn(response.toSingle().toObservable())
 
+        whenever(mapper.toWrapper(d1)).thenReturn(w1)
+        whenever(mapper.toWrapper(d2)).thenReturn(w2)
+
         domain.getInitialNews(offset)
 
-        argumentCaptor<List<RedditNewsDataResponse>>().apply {
+        argumentCaptor<List<RedditNewsWrapper>>().apply {
             verify(presenter).onGetInitialNews(capture())
-            Assertions.assertThat(firstValue).containsExactly(d1, d2)
+            Assertions.assertThat(firstValue).containsExactly(w1, w2)
         }
     }
 
