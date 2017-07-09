@@ -1,4 +1,4 @@
-package br.com.missao.cleanarchitecture.adapters
+package br.com.missao.cleanarchitecture.adapters.delegates
 
 import android.content.Intent
 import android.net.Uri
@@ -36,7 +36,7 @@ class RedditNewsDelegateAdapter : ViewTypeDelegateAdapter {
             this.textAuthor.text = item.author
             this.textComments.text = context.resources.getQuantityString(R.plurals.comments, item.numComments, item.numComments)
             this.setOnClickListener {
-                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(item.url))
+                val browserIntent = android.content.Intent(android.content.Intent.ACTION_VIEW, android.net.Uri.parse(item.url))
                 this.context.startActivity(browserIntent)
             }
         }

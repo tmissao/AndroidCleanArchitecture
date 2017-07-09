@@ -1,17 +1,20 @@
 package br.com.missao.cleanarchitecture.constants
 
+import br.com.missao.cleanarchitecture.adapters.delegates.LoadingDelegateAdapter
+import br.com.missao.cleanarchitecture.adapters.delegates.RedditNewsDelegateAdapter
+
 /**
  * Adapter View Holder codes
  */
 object AdapterConstants {
 
     /**
-     *  // TODO COMMENTARY
+     *  Identifier to [RedditNewsDelegateAdapter]
      */
     val NEWS = 1
-
+    
     /**
-     *  // TODO COMMENTARY
+     *  Identifier to [LoadingDelegateAdapter]
      */
     val LOADING = 2
 }

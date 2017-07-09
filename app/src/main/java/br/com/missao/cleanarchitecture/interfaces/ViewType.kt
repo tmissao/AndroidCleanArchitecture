@@ -6,7 +6,7 @@ package br.com.missao.cleanarchitecture.interfaces
 interface ViewType {
 
     /**
-     * Obtains view type
+     * Obtains view type delegate identifier
      */
     fun getViewType(): Int
 }

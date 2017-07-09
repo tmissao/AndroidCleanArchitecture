@@ -3,6 +3,8 @@ package br.com.missao.cleanarchitecture.adapters
 import android.support.v4.util.SparseArrayCompat
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
+import br.com.missao.cleanarchitecture.adapters.delegates.LoadingDelegateAdapter
+import br.com.missao.cleanarchitecture.adapters.delegates.RedditNewsDelegateAdapter
 import br.com.missao.cleanarchitecture.constants.AdapterConstants
 import br.com.missao.cleanarchitecture.interfaces.ViewType
 import br.com.missao.cleanarchitecture.interfaces.ViewTypeDelegateAdapter
@@ -50,7 +52,7 @@ class NewsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         items.removeAt(initPosition)
         items.addAll(news)
         items.add(loadingItem)
-        notifyItemRangeChanged(initPosition, items.size + 1)
+        notifyItemRangeChanged(initPosition, items.size)
     }
 
     /**

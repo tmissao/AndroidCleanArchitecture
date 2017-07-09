@@ -12,6 +12,9 @@ import dagger.Provides
 @Module
 class PresenterModule {
 
+    /**
+     * Provides [MainMvpPresenterOperations]
+     */
     @Provides fun providesMainPresenter(domain: MainMvpModelOperations): MainMvpPresenterOperations
             = RedditPresenter(domain)
 }

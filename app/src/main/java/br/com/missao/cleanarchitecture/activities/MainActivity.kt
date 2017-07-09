@@ -8,8 +8,8 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import br.com.missao.cleanarchitecture.R
 import br.com.missao.cleanarchitecture.adapters.NewsAdapter
+import br.com.missao.cleanarchitecture.extensions.app
 import br.com.missao.cleanarchitecture.extensions.toast
-import br.com.missao.cleanarchitecture.injections.components.DaggerViewComponent
 import br.com.missao.cleanarchitecture.loggers.Logger
 import br.com.missao.cleanarchitecture.mvp.MainMvpPresenterOperations
 import br.com.missao.cleanarchitecture.mvp.MainMvpRequiredViewOperations
@@ -21,8 +21,20 @@ import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), MainMvpRequiredViewOperations {
 
+    /**
+     * Presenter
+     */
     @Inject lateinit var presenter: MainMvpPresenterOperations
+
+    /**
+     * Logger to report errors
+     */
     @Inject lateinit var logger: Logger
+
+    /**
+     * Threshold for request new items for recyclerView
+     */
+    private val scrollThreshold = 5
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +48,7 @@ class MainActivity : AppCompatActivity(), MainMvpRequiredViewOperations {
      * Injects activity dependencies
      */
     fun inject() {
-        DaggerViewComponent.builder().build().inject(this)
+        this.app.getDaggerViewComponent().inject(this)
         presenter.setView(this)
     }
 
@@ -50,7 +62,7 @@ class MainActivity : AppCompatActivity(), MainMvpRequiredViewOperations {
             layoutManager = linearLayout
             adapter = NewsAdapter()
             clearOnScrollListeners()
-            addOnScrollListener(InfiniteScrollListener({ getInitialNews() }, linearLayout))
+            addOnScrollListener(InfiniteScrollListener({ getInitialNews() }, scrollThreshold, linearLayout))
         }
 
         imageDefault.setColorFilter(ContextCompat.getColor(this, R.color.disableTextColor),

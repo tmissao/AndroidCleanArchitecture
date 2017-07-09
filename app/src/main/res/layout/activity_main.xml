@@ -13,6 +13,8 @@
     android:layout_height="match_parent"
     tools:listitem="@layout/item_news" />
 
-  <include layout="@layout/partial_empty" />
+  <include
+    layout="@layout/partial_empty"
+    android:visibility="gone" />
 
 </LinearLayout>
