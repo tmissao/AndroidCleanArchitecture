@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <dimen name="spacing_xlarge">16dp</dimen>
+  <dimen name="activity_margin">16dp</dimen>
+
   <!--Font-Size-->
   <dimen name="fontsize_headline">24sp</dimen>
   <dimen name="fontsize_title">20sp</dimen>
@@ -20,5 +21,14 @@
   <dimen name="item_loading_size">40dp</dimen>
 
   <dimen name="image_no_registry_size">150dp</dimen>
+
+  <!--DrawableLayout-->
+  <dimen name="drawable_layout_height">150dp</dimen>
+  <dimen name="drawable_layout_image_border_size">1dp</dimen>
+  <dimen name="drawable_layout_image_height">56dp</dimen>
+  <dimen name="drawable_layout_image_width">56dp</dimen>
+  <dimen name="drawable_layout_item_text_margin">16dp</dimen>
+  <dimen name="drawable_layout_item_height">48dp</dimen>
+  <!-- ************ -->
 
 </resources>

@@ -2,6 +2,7 @@ package br.com.missao.cleanarchitecture.utils
 
 import android.content.Context
 import android.net.ConnectivityManager
+import android.util.Log
 import br.com.missao.cleanarchitecture.exceptions.NoConnectivityException
 import okhttp3.Interceptor
 import okhttp3.Response
@@ -36,6 +37,7 @@ class ConnectivityInterceptor(private val context: Context) : Interceptor {
             return netInfo.isConnected
 
         } catch (e: Exception) {
+            Log.e("util", "", e)
             return false
         }
     }

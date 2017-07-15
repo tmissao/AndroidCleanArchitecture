@@ -3,12 +3,15 @@ package br.com.missao.cleanarchitecture.activities
 import android.graphics.PorterDuff
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
+import android.support.v4.view.GravityCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.view.MenuItem
 import android.view.View
 import br.com.missao.cleanarchitecture.R
 import br.com.missao.cleanarchitecture.adapters.NewsAdapter
 import br.com.missao.cleanarchitecture.extensions.app
+import br.com.missao.cleanarchitecture.extensions.setToolbar
 import br.com.missao.cleanarchitecture.extensions.toast
 import br.com.missao.cleanarchitecture.loggers.Logger
 import br.com.missao.cleanarchitecture.mvp.MainMvpPresenterOperations
@@ -16,6 +19,7 @@ import br.com.missao.cleanarchitecture.mvp.MainMvpRequiredViewOperations
 import br.com.missao.cleanarchitecture.pojos.wrappers.RedditNewsWrapper
 import br.com.missao.cleanarchitecture.utils.InfiniteScrollListener
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.app_bar.*
 import kotlinx.android.synthetic.main.partial_empty.*
 import javax.inject.Inject
 
@@ -56,6 +60,7 @@ class MainActivity : AppCompatActivity(), MainMvpRequiredViewOperations {
      * Initiates activity views
      */
     fun setupViews() {
+        this.setToolbar(appBar, R.drawable.ic_menu)
         recyclerNews.apply {
             val linearLayout = LinearLayoutManager(this.context)
             setHasFixedSize(true)
@@ -74,11 +79,28 @@ class MainActivity : AppCompatActivity(), MainMvpRequiredViewOperations {
      */
     fun setupEvents() {
         llContainerEmpty.setOnClickListener { getInitialNews() }
+        navigationView.setNavigationItemSelectedListener {
+            it.isChecked = true
+            drawerLayout.closeDrawers()
+            toast(it.title)
+            true
+        }
     }
 
     override fun onStart() {
         super.onStart()
         getInitialNews()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        when (item.itemId) {
+            android.R.id.home -> {
+                drawerLayout.openDrawer(GravityCompat.START)
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
     }
 
     /**

@@ -6,11 +6,13 @@ import android.support.test.InstrumentationRegistry
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.assertion.ViewAssertions.matches
+import android.support.test.espresso.contrib.DrawerActions
 import android.support.test.espresso.contrib.RecyclerViewActions
 import android.support.test.espresso.intent.Intents.intended
 import android.support.test.espresso.intent.matcher.IntentMatchers.hasAction
 import android.support.test.espresso.intent.matcher.IntentMatchers.hasData
 import android.support.test.espresso.intent.rule.IntentsTestRule
+import android.support.test.espresso.matcher.RootMatchers.withDecorView
 import android.support.test.espresso.matcher.ViewMatchers.*
 import android.support.test.filters.LargeTest
 import android.support.test.runner.AndroidJUnit4
@@ -26,8 +28,7 @@ import br.com.missao.cleanarchitecture.utils.RecyclerViewMatcher.withRecyclerVie
 import br.com.missao.cleanarchitecture.utils.TestValues
 import com.nhaarman.mockito_kotlin.reset
 import com.nhaarman.mockito_kotlin.verify
-import org.hamcrest.Matchers.allOf
-import org.hamcrest.Matchers.equalTo
+import org.hamcrest.Matchers.*
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -192,6 +193,77 @@ class MainActivityTest {
 
         // Check if presenter method to get Reddit news was called
         verify(presenter).getInitialNews(0)
+    }
+
+    @Test
+    fun clickMenuButton() {
+        activity = activityTestRule.launchActivity(Intent())
+
+        onView(withContentDescription(R.string.abc_action_bar_up_description)).perform(click());
+        onView(withId(R.id.drawerLayout)).check(matches(isDisplayed()))
+        onView(withId(R.id.navigationView)).check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun openCloseDrawerSlide() {
+        activity = activityTestRule.launchActivity(Intent())
+
+        DrawerActions.openDrawer(R.id.drawerLayout)
+
+        onView(withId(R.id.drawerLayout)).check(matches(isDisplayed()))
+        onView(withId(R.id.navigationView)).check(matches(isDisplayed()))
+
+        DrawerActions.closeDrawer(R.id.drawerLayout)
+        onView(withId(R.id.drawerLayout)).check(matches(isDisplayed()))
+        onView(withId(R.id.navigationView)).check(matches(withEffectiveVisibility(Visibility.INVISIBLE)))
+    }
+
+    @Test
+    fun checkNavigationMenuContent() {
+        activity = activityTestRule.launchActivity(Intent())
+
+        DrawerActions.openDrawer(R.id.drawerLayout)
+        onView(withId(R.id.drawerLayout)).check(matches(isDisplayed()))
+        onView(withId(R.id.navigationView)).check(matches(isDisplayed()))
+
+        onView(withText(R.string.slide_menu_home)).check(matches(isDisplayed()))
+        onView(withText(R.string.slide_menu_about)).check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun clickHomeNavigationMenu() {
+        activity = activityTestRule.launchActivity(Intent())
+
+        DrawerActions.openDrawer(R.id.drawerLayout)
+        onView(withId(R.id.drawerLayout)).check(matches(isDisplayed()))
+        onView(withId(R.id.navigationView)).check(matches(isDisplayed()))
+
+        onView(withText(R.string.slide_menu_home)).perform(click())
+
+        onView(withText(R.string.slide_menu_home))
+                .inRoot(withDecorView(not((activity.window.decorView)))).check(matches(isDisplayed()))
+
+        onView(withId(R.id.navigationView)).check(matches(withEffectiveVisibility(Visibility.INVISIBLE)))
+        // waits toast be dismissed
+        Thread.sleep(2000)
+    }
+
+    @Test
+    fun clickAboutNavigationMenu() {
+        activity = activityTestRule.launchActivity(Intent())
+
+        DrawerActions.openDrawer(R.id.drawerLayout)
+        onView(withId(R.id.drawerLayout)).check(matches(isDisplayed()))
+        onView(withId(R.id.navigationView)).check(matches(isDisplayed()))
+
+        onView(withText(R.string.slide_menu_about)).perform(click())
+
+        onView(withText(R.string.slide_menu_about))
+                .inRoot(withDecorView(not((activity.window.decorView)))).check(matches(isDisplayed()))
+
+        onView(withId(R.id.navigationView)).check(matches(withEffectiveVisibility(Visibility.INVISIBLE)))
+        // waits toast be dismissed
+        Thread.sleep(2000)
     }
 
     /**
