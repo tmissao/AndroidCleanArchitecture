@@ -1,5 +1,7 @@
 package br.com.missao.cleanarchitecture.injections.modules
 
+import android.content.Context
+import br.com.missao.cleanarchitecture.utils.ConnectivityInterceptor
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -25,10 +27,15 @@ class RetrofitModule {
     /**
      * Provides [OkHttpClient] with an [HttpLoggingInterceptor] for debug purposes
      */
-    @Provides @Singleton fun providesOkHttpClient(): OkHttpClient {
-        val interceptor = HttpLoggingInterceptor()
-        interceptor.level = HttpLoggingInterceptor.Level.BODY
-        return OkHttpClient.Builder().addInterceptor(interceptor)
+    @Provides @Singleton fun providesOkHttpClient(context: Context): OkHttpClient {
+        val interceptorLogger = HttpLoggingInterceptor()
+        interceptorLogger.level = HttpLoggingInterceptor.Level.BODY
+
+        val interceptorConnectivity = ConnectivityInterceptor(context)
+
+        return OkHttpClient.Builder()
+                .addInterceptor(interceptorLogger)
+                .addInterceptor(interceptorConnectivity)
                 .connectTimeout(2, TimeUnit.SECONDS)
                 .build()
     }

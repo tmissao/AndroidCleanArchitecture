@@ -22,9 +22,4 @@ interface AppComponent {
      * Obtains [App]
      */
     fun getContext(): Context
-
-    /**
-     * Injects [App] on App class
-     */
-    fun inject(app: App)
 }

@@ -2,6 +2,7 @@ package br.com.missao.cleanarchitecture.domains
 
 import br.com.missao.cleanarchitecture.apis.reddit.RedditAPI
 import br.com.missao.cleanarchitecture.bases.DomainBase
+import br.com.missao.cleanarchitecture.exceptions.NoConnectivityException
 import br.com.missao.cleanarchitecture.loggers.Logger
 import br.com.missao.cleanarchitecture.mappers.RedditNewsMapper
 import br.com.missao.cleanarchitecture.mvp.MainMvpModelOperations
@@ -10,7 +11,6 @@ import br.com.missao.cleanarchitecture.pojos.dtos.RedditNewsDataResponse
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import java.net.ConnectException
 
 /**
  * Resolves inquiries relate to Reddit API
@@ -44,7 +44,7 @@ class RedditDomain(private val api: RedditAPI, private val logger: Logger,
                         { presenter?.onGetInitialNews(it) },
                         {
                             when (it) {
-                                is ConnectException -> presenter?.onNetworkError()
+                                is NoConnectivityException -> presenter?.onNetworkError()
                                 else -> logger.e(TAG, it)
                             }
                         }

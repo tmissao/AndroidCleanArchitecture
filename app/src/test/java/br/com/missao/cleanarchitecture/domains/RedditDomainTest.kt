@@ -4,6 +4,7 @@ import br.com.missao.cleanarchitecture.BuildConfig
 import br.com.missao.cleanarchitecture.RxTest
 import br.com.missao.cleanarchitecture.apis.reddit.RedditAPI
 import br.com.missao.cleanarchitecture.app.App
+import br.com.missao.cleanarchitecture.exceptions.NoConnectivityException
 import br.com.missao.cleanarchitecture.loggers.Logger
 import br.com.missao.cleanarchitecture.mappers.RedditNewsMapper
 import br.com.missao.cleanarchitecture.mvp.MainMvpRequiredPresenterOperations
@@ -25,7 +26,6 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
-import java.net.ConnectException
 
 /**
  * Tests for class [RedditDomain]
@@ -84,7 +84,7 @@ class RedditDomainTest : RxTest() {
         val offset = 10
 
         whenever(api.getTopNews(offset, domain.limit))
-                .thenReturn(Observable.error { ConnectException() })
+                .thenReturn(Observable.error { NoConnectivityException() })
 
         domain.getInitialNews(offset)
 

@@ -1,5 +1,6 @@
 package br.com.missao.cleanarchitecture.injections.modules
 
+import android.content.Context
 import com.nhaarman.mockito_kotlin.mock
 import okhttp3.OkHttpClient
 import org.assertj.core.api.Assertions
@@ -34,7 +35,8 @@ class RetrofitModuleTest {
 
     @Test
     fun providesOkHttpClient() {
-        val result = module.providesOkHttpClient()
+        val context: Context = mock()
+        val result = module.providesOkHttpClient(context)
         Assertions.assertThat(result).isInstanceOf(OkHttpClient::class.java)
     }
 

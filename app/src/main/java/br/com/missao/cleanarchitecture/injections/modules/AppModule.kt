@@ -19,5 +19,5 @@ import javax.inject.Singleton
     /**
      * Provides [Context]
      */
-    @Provides @Singleton fun providesContext(): Context = app
+    @Provides @Singleton fun providesContext(): Context = app.baseContext
 }
