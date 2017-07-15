@@ -227,7 +227,10 @@ class MainActivityTest {
         onView(withId(R.id.navigationView)).check(matches(isDisplayed()))
 
         onView(withText(R.string.slide_menu_home)).check(matches(isDisplayed()))
+                .check(matches(isChecked()))
         onView(withText(R.string.slide_menu_about)).check(matches(isDisplayed()))
+
+
     }
 
     @Test
@@ -244,6 +247,10 @@ class MainActivityTest {
                 .inRoot(withDecorView(not((activity.window.decorView)))).check(matches(isDisplayed()))
 
         onView(withId(R.id.navigationView)).check(matches(withEffectiveVisibility(Visibility.INVISIBLE)))
+
+        DrawerActions.openDrawer(R.id.drawerLayout)
+        onView(withText(R.string.slide_menu_home)).check(matches(isChecked()))
+
         // waits toast be dismissed
         Thread.sleep(2000)
     }
@@ -262,6 +269,9 @@ class MainActivityTest {
                 .inRoot(withDecorView(not((activity.window.decorView)))).check(matches(isDisplayed()))
 
         onView(withId(R.id.navigationView)).check(matches(withEffectiveVisibility(Visibility.INVISIBLE)))
+
+        DrawerActions.openDrawer(R.id.drawerLayout)
+        onView(withText(R.string.slide_menu_about)).check(matches(isChecked()))
         // waits toast be dismissed
         Thread.sleep(2000)
     }
