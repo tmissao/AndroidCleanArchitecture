@@ -35,7 +35,6 @@ class RedditDomain(private val api: RedditAPI, private val logger: Logger,
         Observable.defer { api.getTopNews(offset, limit) }
                 .subscribeOn(Schedulers.io())
                 .map { it.data.children.map { it.data } }
-                .map { it ?: emptyList<RedditNewsDataResponse>() }
                 .concatMapIterable { it -> it }
                 .map { it -> mapper.toWrapper(it) }
                 .toList()

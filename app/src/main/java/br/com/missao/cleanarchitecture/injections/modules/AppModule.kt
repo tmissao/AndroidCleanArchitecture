@@ -4,6 +4,7 @@ import android.content.Context
 import br.com.missao.cleanarchitecture.app.App
 import dagger.Module
 import dagger.Provides
+import io.realm.Realm
 import javax.inject.Singleton
 
 /**
@@ -20,4 +21,5 @@ import javax.inject.Singleton
      * Provides [Context]
      */
     @Provides @Singleton fun providesContext(): Context = app.baseContext
+
 }
