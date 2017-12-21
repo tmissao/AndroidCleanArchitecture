@@ -4,6 +4,7 @@ import android.content.Context
 import br.com.missao.cleanarchitecture.app.App
 import br.com.missao.cleanarchitecture.injections.modules.AppModule
 import dagger.Component
+import io.realm.Realm
 import javax.inject.Singleton
 
 /**
@@ -22,4 +23,6 @@ interface AppComponent {
      * Obtains [App]
      */
     fun getContext(): Context
+
+    fun getRealm(): Realm
 }

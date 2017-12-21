@@ -1,7 +1,10 @@
 package br.com.missao.cleanarchitecture.domains
 
+import android.util.Log
 import br.com.missao.cleanarchitecture.apis.reddit.RedditAPI
 import br.com.missao.cleanarchitecture.bases.DomainBase
+import br.com.missao.cleanarchitecture.database.daos.RedditNewsDao
+import br.com.missao.cleanarchitecture.database.entities.RedditNews
 import br.com.missao.cleanarchitecture.exceptions.NoConnectivityException
 import br.com.missao.cleanarchitecture.loggers.Logger
 import br.com.missao.cleanarchitecture.mappers.RedditNewsMapper
@@ -16,7 +19,7 @@ import io.reactivex.schedulers.Schedulers
  * Resolves inquiries relate to Reddit API
  */
 class RedditDomain(private val api: RedditAPI, private val logger: Logger,
-                   private val mapper: RedditNewsMapper) :
+                   private val mapper: RedditNewsMapper, private val dao: RedditNewsDao) :
         DomainBase<MainMvpRequiredPresenterOperations>(),
         MainMvpModelOperations {
 

@@ -4,6 +4,7 @@ import br.com.missao.cleanarchitecture.BuildConfig
 import br.com.missao.cleanarchitecture.RxTest
 import br.com.missao.cleanarchitecture.apis.reddit.RedditAPI
 import br.com.missao.cleanarchitecture.app.App
+import br.com.missao.cleanarchitecture.database.daos.RedditNewsDao
 import br.com.missao.cleanarchitecture.exceptions.NoConnectivityException
 import br.com.missao.cleanarchitecture.loggers.Logger
 import br.com.missao.cleanarchitecture.mappers.RedditNewsMapper
@@ -31,14 +32,15 @@ import org.robolectric.annotation.Config
  * Tests for class [RedditDomain]
  */
 @RunWith(RobolectricTestRunner::class)
-@Config(constants = BuildConfig::class, application = App::class)
+@Config(constants = BuildConfig::class)
 class RedditDomainTest : RxTest() {
 
     val api: RedditAPI = mock()
     val logger: Logger = mock()
     val presenter: MainMvpRequiredPresenterOperations = mock()
     val mapper: RedditNewsMapper = mock()
-    var domain: RedditDomain = RedditDomain(api, logger, mapper)
+    val dao: RedditNewsDao = mock()
+    var domain: RedditDomain = RedditDomain(api, logger, mapper, dao)
 
     @Before
     fun setUp() {

@@ -1,6 +1,5 @@
-package br.com.missao.cleanarchitecture.entities
+package br.com.missao.cleanarchitecture.database.entities
 
-import android.support.v7.widget.DialogTitle
 import br.com.missao.cleanarchitecture.interfaces.Entity
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
@@ -9,7 +8,7 @@ import java.util.*
 /**
  * RedditNews Entity persisted on database
  */
-class RedditNews() : RealmObject(), Entity {
+open class RedditNews() : RealmObject(), Entity {
 
   @PrimaryKey override var id: String? = null
   var author: String
@@ -26,7 +25,7 @@ class RedditNews() : RealmObject(), Entity {
     this.thumbnail = ""
     this.url = ""
   }
-  
+
   constructor(author: String, title: String, numComments: Int, thumbnail: String,
               url: String, id: String? = UUID.randomUUID().toString()) : this() {
     this.id = id

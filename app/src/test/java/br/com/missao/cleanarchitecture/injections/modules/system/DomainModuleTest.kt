@@ -1,6 +1,7 @@
 package br.com.missao.cleanarchitecture.injections.modules.system
 
 import br.com.missao.cleanarchitecture.apis.reddit.RedditAPI
+import br.com.missao.cleanarchitecture.database.daos.RedditNewsDao
 import br.com.missao.cleanarchitecture.injections.modules.DomainModule
 import br.com.missao.cleanarchitecture.loggers.Logger
 import br.com.missao.cleanarchitecture.mappers.RedditNewsMapper
@@ -18,10 +19,11 @@ class DomainModuleTest {
     val logger: Logger = mock()
     val mapper: RedditNewsMapper = mock()
     val module: DomainModule = DomainModule()
+    val dao: RedditNewsDao = mock()
 
     @Test
     fun provides() {
-        val result = module.providesMainDomain(api, logger, mapper)
+        val result = module.providesMainDomain(api, logger, mapper, dao)
         Assertions.assertThat(result).isInstanceOf(MainMvpModelOperations::class.java)
     }
 

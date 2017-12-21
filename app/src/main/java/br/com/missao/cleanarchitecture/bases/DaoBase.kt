@@ -1,5 +1,6 @@
 package br.com.missao.cleanarchitecture.bases
 
+import android.util.Log
 import br.com.missao.cleanarchitecture.interfaces.DAO
 import br.com.missao.cleanarchitecture.interfaces.Entity
 import io.realm.Realm
@@ -10,55 +11,29 @@ import java.util.*
 /**
  * Base DAO implementing common methods
  */
-abstract class DaoBase<T>(val clazz: Class<T>): DAO<T> where T: RealmObject, T:Entity {
-
-  /**
-   * Executes realm's operations returning [X]
-   */
-  inline fun <X> execute(body: (Realm) -> X) : X? {
-    return with(Realm.getDefaultInstance()) {
-      val result = body(this)
-      this.close()
-      result
-    }
-  }
-
-  /**
-   * Executes realm's operations returning a list of [X]
-   */
-  inline fun <X> executeList(body: (Realm) -> RealmResults<X>) : RealmResults<X> {
-    return with(Realm.getDefaultInstance()) {
-      val result = body(this)
-      this.close()
-      result
-    }
-  }
+abstract class DaoBase<T>(val realm: Realm, val clazz: Class<T>): DAO<T> where T: RealmObject, T:Entity {
 
   /**
    * Executes Realm's operations inside a transaction
    */
   inline fun transaction(element: T, crossinline body: (T) -> Unit) {
-    execute {
-      it.executeTransaction {
+      realm.executeTransaction {
         body(element)
       }
-    }
   }
 
   /**
    * Gets element by [id]
    */
   override fun getById(id: String): T? {
-    return execute {
-      it.where(clazz).equalTo(Entity.ID_KEY, id).findFirst()
-    }
+    return realm.where(clazz).equalTo(Entity.ID_KEY, id).findFirst()
   }
 
   /**
    * Gets all elements from a class
    */
   override fun getAll(): RealmResults<T> {
-    return executeList { it.where(clazz).findAll() }
+    return realm.where(clazz).findAll()
   }
 
   /**
@@ -66,7 +41,7 @@ abstract class DaoBase<T>(val clazz: Class<T>): DAO<T> where T: RealmObject, T:E
    */
   override fun save(element: T) {
     element.id = element.id ?: UUID.randomUUID().toString()
-    execute { transaction(element) { it.realm.insertOrUpdate(element)} }
+    transaction(element) { realm.insertOrUpdate(element) }
   }
 
   /**
@@ -80,13 +55,17 @@ abstract class DaoBase<T>(val clazz: Class<T>): DAO<T> where T: RealmObject, T:E
    * Deletes an element by [id]
    */
   override fun delete(id: String) {
-    execute { it.where(clazz).equalTo(Entity.ID_KEY, id).findFirst()?.deleteFromRealm() }
+    realm.where(clazz).equalTo(Entity.ID_KEY, id).findFirst()?.apply {
+      transaction(this) {
+        this.deleteFromRealm()
+      }
+    }
   }
 
   /**
    * Refreshes Realm instance
    */
   override fun refresh() {
-    execute { it.refresh() }
+    realm.refresh()
   }
 }

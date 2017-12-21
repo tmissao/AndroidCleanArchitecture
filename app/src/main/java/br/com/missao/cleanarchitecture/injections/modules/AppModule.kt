@@ -22,4 +22,6 @@ import javax.inject.Singleton
      */
     @Provides @Singleton fun providesContext(): Context = app.baseContext
 
+    @Provides @Singleton fun providesRealm(): Realm = app.realmInstance
+
 }

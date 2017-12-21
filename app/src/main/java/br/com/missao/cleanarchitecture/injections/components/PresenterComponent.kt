@@ -10,7 +10,7 @@ import javax.inject.Singleton
  */
 @Singleton
 @Component(modules = arrayOf(AppModule::class, RetrofitModule::class, ApiModule::class, LoggerModule::class,
-        MapperModule::class, DomainModule::class, PresenterModule::class))
+        MapperModule::class, DomainModule::class, DaoModule::class, PresenterModule::class))
 
 interface PresenterComponent {
 
